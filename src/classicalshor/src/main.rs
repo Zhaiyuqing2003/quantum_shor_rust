@@ -1,6 +1,6 @@
 use classicalshor::*;
 
 fn main() {
-    let num = 120;
+    let num = 13;
     println!("{}",classicshor(num));
 }
