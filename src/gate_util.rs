@@ -28,7 +28,7 @@ pub trait Gate {
     fn get(&self) -> GateFunction;
 }
 pub trait Reversible {
-    fn reverse(&self) -> Self;
+    fn reverse(&self) -> Box<dyn Gate>;
 }
 
 pub type GateFunction = Box<dyn Fn(&QuantumState) -> QuantumState>;

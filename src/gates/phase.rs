@@ -58,11 +58,11 @@ impl Gate for Phase {
 }
 
 impl Reversible for Phase {
-    fn reverse(&self) -> Self {
-        Phase {
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(Phase {
             n : self.n,
             wire : self.wire,
             angle : -self.angle,
-        }
+        })
     }
 }

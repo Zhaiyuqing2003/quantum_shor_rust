@@ -72,12 +72,12 @@ impl Gate for ControlPhase {
 }
 
 impl Reversible for ControlPhase {
-    fn reverse(&self) -> Self {
-        ControlPhase {
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(ControlPhase {
             n : self.n,
             wire : self.wire,
             control : self.control,
             angle : -self.angle,
-        }
+        })
     }
 }

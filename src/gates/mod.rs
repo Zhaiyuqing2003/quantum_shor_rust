@@ -6,3 +6,5 @@ pub mod rz;
 pub mod phase;
 pub mod unitary_modular;
 pub mod hadamard;
+pub mod swap;
+pub mod control_unitary_modular;

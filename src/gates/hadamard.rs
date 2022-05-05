@@ -57,7 +57,7 @@ impl Gate for Hadamard {
 }
 
 impl Reversible for Hadamard {
-    fn reverse(&self) -> Self {
-        self.clone()
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(self.clone())
     }
 }

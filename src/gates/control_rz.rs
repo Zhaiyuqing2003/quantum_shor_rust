@@ -75,3 +75,14 @@ impl Gate for ControlRz {
         Box::new(control_rz)
     }
 }
+
+impl Reversible for ControlRz {
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(ControlRz {
+            n : self.n,
+            wire : self.wire,
+            control : self.control,
+            angle : -self.angle,
+        })
+    }
+}

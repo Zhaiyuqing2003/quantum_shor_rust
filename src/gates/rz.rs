@@ -60,11 +60,11 @@ impl Gate for Rz {
 }
 
 impl Reversible for Rz {
-    fn reverse(&self) -> Self {
-        Rz {
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(Rz {
             n : self.n,
             wire : self.wire,
             angle : -self.angle,
-        }
+        })
     }
 }

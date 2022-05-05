@@ -45,10 +45,10 @@ impl Gate for X {
 }
 
 impl Reversible for X {
-    fn reverse(&self) -> Self {
-        X {
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(X {
             n : self.n,
             wire : self.wire,
-        }
+        })
     }
 }

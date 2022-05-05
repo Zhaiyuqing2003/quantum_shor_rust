@@ -62,11 +62,11 @@ impl Gate for ControlX {
 }
 
 impl Reversible for ControlX {
-    fn reverse(&self) -> Self {
-        ControlX {
+    fn reverse(&self) -> Box<dyn Gate> {
+        Box::new(ControlX {
             n : self.n,
             wire : self.wire,
             control : self.control,
-        }
+        })
     }
 }
