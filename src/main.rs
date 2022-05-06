@@ -10,19 +10,12 @@ use classical_shor::classical_shor;
 
 
 fn main() {
-    // let mut state = QuantumState::from_length(2);
-    // // insert state |01> with prob 0.6 + 0.8i
-    // state.increment_state(1, Complex32::new(0.6, 0.8));
-    // // create a gate
-    // let mut gate = Phase::new(2, 1, PI);
     println!("updated");
+    // factoring 15.0 could be done in reasonable time
+    // while other number, when it's greater than 32.0, are starting to take tremendous amount of time.
     let vec = quantum_shor(15.0);
-
-    // let mut state = QuantumState::from_length(2);
-    // state.increment_state(1, Complex32::one());
-    // state.increment_state(1, -Complex32::one());
-
     println!("{:?}", vec);
-    // let a = 4.0;
-    // println!("{}", a % 3.0 == 1.0)
+
+    let vec = classical_shor(33.0);
+    println!("{:?}", vec);
 }
