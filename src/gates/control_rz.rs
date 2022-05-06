@@ -41,8 +41,8 @@ impl Gate for ControlRz {
     fn get(&self) -> GateFunction {
         let n = self.n;
         let wire = self.wire;
-        let control = self.control;
         let angle = self.angle;
+        let checker_number = 1 << (n - 1 - self.control);
 
         let control_rz = move |state : &QuantumState| {
             panic_on_length_mismatch(n, state.get_bit_length());
@@ -50,7 +50,7 @@ impl Gate for ControlRz {
             let mut new_state = QuantumState::from_length(n);
 
             for (state, value) in state.iter() {
-                if control & state == control {
+                if checker_number & state == checker_number {
                     new_state.increment_state(
                         *state,
                         value * Complex32::from_polar(

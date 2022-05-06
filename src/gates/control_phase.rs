@@ -39,7 +39,7 @@ impl Gate for ControlPhase {
     fn get(&self) -> GateFunction {
         let n = self.n;
         let wire = self.wire;
-        let control = self.control;
+        let checker_number = 1 << (n - 1 - self.control);
         let angle = self.angle;
 
         let control_phase = move |state : &QuantumState| {
@@ -48,7 +48,7 @@ impl Gate for ControlPhase {
             let mut new_state = QuantumState::from_length(n);
 
             for (state, value) in state.iter() {
-                if control & state == control {
+                if checker_number & state == checker_number {
                     new_state.increment_state(
                         *state,
                         if state & (1 << (n - 1 - wire)) == 0 {

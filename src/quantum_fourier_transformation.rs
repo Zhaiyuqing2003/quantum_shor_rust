@@ -1,7 +1,5 @@
 use std::f32::consts::PI;
 
-use num::pow;
-
 use crate::gates::control_phase::ControlPhase;
 use crate::gates::hadamard::Hadamard;
 use crate::{
@@ -37,10 +35,11 @@ pub fn get_qft_gate(start_wire : usize, end_wire : usize, n : usize) -> Vec<Box<
             vec.push(Box::new(
                 ControlPhase::new(
                     n, j, i, 
-                    PI / pow(2.0, j - 1)
+                    PI / (2.0f32).powi((j - i) as i32)
                 )
             ))
         }
+
 
         vec.push(Box::new(
             Hadamard::new(n, i)

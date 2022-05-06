@@ -34,7 +34,7 @@ impl Gate for ControlX {
     fn get(&self) -> GateFunction {
         let n = self.n;
         let wire = self.wire;
-        let control = self.control;
+        let checker_number = 1 << (n - 1 - self.control);
 
         let control_x = move |state : &QuantumState| {
             panic_on_length_mismatch(n, state.get_bit_length());
@@ -42,7 +42,7 @@ impl Gate for ControlX {
             let mut new_state = QuantumState::from_length(n);
 
             for (state, value) in state.iter() {
-                if control & state == control {
+                if checker_number & state == checker_number {
                     new_state.increment_state(
                         state ^ (1 << (n - 1 - wire)),
                         value.clone()

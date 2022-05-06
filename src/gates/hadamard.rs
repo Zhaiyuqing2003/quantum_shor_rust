@@ -37,7 +37,7 @@ impl Gate for Hadamard {
 
             for (state, value) in state.iter() {
                 new_state.increment_state(
-                    state & signature,
+                    state & !signature,
                     value / SQRT_2
                 );
                 new_state.increment_state(

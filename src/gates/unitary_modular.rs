@@ -11,7 +11,7 @@ pub struct UnitaryModular {
 impl UnitaryModular {
     pub fn new(n : usize, start_wire : usize, end_wire : usize, x : usize, modular : usize) -> UnitaryModular {
         panic_on_out_of_bounds(n, start_wire);
-        panic_on_out_of_bounds(n, end_wire);
+        panic_on_out_of_bounds(n, end_wire - 1);
         panic_if_bigger_than(start_wire, end_wire);
         UnitaryModular {
             n,

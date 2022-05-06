@@ -1,4 +1,8 @@
-use crate::{gates::{unitary_modular::{UnitaryModular}, hadamard::Hadamard, control_unitary_modular::ControlUnitaryModular}, gate_util::Gate, quantum_fourier_transformation::get_qft_gate};
+use crate::{
+    gates::{unitary_modular::{UnitaryModular}, hadamard::Hadamard, control_unitary_modular::ControlUnitaryModular}, 
+    gate_util::Gate, 
+    quantum_fourier_transformation::get_qft_gate
+};
 
 pub fn get_phase_estimation_wire(estimation_wire : usize, unitary_modular_gate : UnitaryModular) -> Vec<Box<dyn Gate>> {
     if estimation_wire < 1 {

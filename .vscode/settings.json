@@ -2,6 +2,8 @@
     "cSpell.words": [
         "consts",
         "Hadamard",
+        "powf",
+        "powi",
         "qubits",
         "shor"
     ]

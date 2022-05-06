@@ -12,7 +12,7 @@ pub struct ControlUnitaryModular {
 impl ControlUnitaryModular {
     pub fn new(n : usize, start_wire : usize, end_wire : usize, control : usize, x : usize, modular : usize) -> ControlUnitaryModular {
         panic_on_out_of_bounds(n, start_wire);
-        panic_on_out_of_bounds(n, end_wire);
+        panic_on_out_of_bounds(n, end_wire - 1);
         panic_if_bigger_than(start_wire, end_wire);
         panic_if_equal(start_wire, end_wire);
         panic_if_equal(control, start_wire);
@@ -53,7 +53,7 @@ impl Gate for ControlUnitaryModular {
         let end_wire = self.end_wire;
         let x = self.x;
         let modular = self.modular;
-        let control = self.control;
+        let checker_number = 1 << (n - 1 - self.control);
 
         let unitary_modular = move |state : &QuantumState| {
             panic_on_length_mismatch(n, state.get_bit_length());
@@ -61,7 +61,7 @@ impl Gate for ControlUnitaryModular {
             let mut new_state = QuantumState::from_length(n);
 
             for (state, value) in state.iter() {
-                if control & state == control {
+                if checker_number & state == checker_number {
                     let y = (state >> (n - end_wire)) & ((1 << (end_wire - start_wire)) - 1);
                     let new_y = if y >= modular {
                         y
